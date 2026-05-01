@@ -1,0 +1,5 @@
+export const OrderManager = () => {
+  // Includes searchable table, status badges, and a 
+  // dynamic Side-Panel showing detailed Workflow History 
+  // (e.g., Creator, Tax Calculation timestamp, Approval user).
+};
