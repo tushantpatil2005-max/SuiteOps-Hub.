@@ -1,0 +1,15 @@
+import { GoogleGenAI } from "@google/genai";
+
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY as string });
+
+export const troubleshootNetSuiteError = async (errorLog: string) => {
+  const prompt = `You are an expert NetSuite SuiteScript Developer. 
+  Analyze this error and provide: 1. Root cause, 2. Resolution plan, 3. Code snippet fix.
+  ERROR LOG: ${errorLog}`;
+
+  const response = await ai.models.generateContent({
+    model: "gemini-3-flash-preview",
+    contents: prompt,
+  });
+  return response.text;
+};
