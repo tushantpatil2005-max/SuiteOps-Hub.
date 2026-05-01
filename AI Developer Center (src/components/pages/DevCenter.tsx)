@@ -1,0 +1,37 @@
+export const DevCenter = () => {
+  const [errorLog, setErrorLog] = useState('');
+  const [analysis, setAnalysis] = useState('');
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+
+  const handleTroubleshoot = async () => {
+    setIsAnalyzing(true);
+    const result = await troubleshootNetSuiteError(errorLog);
+    setAnalysis(result);
+    setIsAnalyzing(false);
+  };
+
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {/* Script List Table */}
+      <div className="lg:col-span-2 bg-white rounded-xl border border-slate-200">
+        <h3 className="p-4 font-bold border-b">Active SuiteScripts</h3>
+        {/* Table implementation... */}
+      </div>
+
+      {/* AI Assistant Sidebar */}
+      <div className="bg-slate-900 rounded-xl p-4 text-white">
+        <h3 className="text-blue-400 font-bold mb-4">AI SCRIPT ASSISTANT</h3>
+        <textarea 
+          className="w-full bg-slate-800 rounded p-3 text-xs mb-4"
+          placeholder="Paste Error Log..."
+          value={errorLog}
+          onChange={(e) => setErrorLog(e.target.value)}
+        />
+        <button onClick={handleTroubleshoot} className="w-full bg-primary py-2 rounded">
+          {isAnalyzing ? 'Analyzing...' : 'Analyze with Gemini'}
+        </button>
+        {analysis && <div className="mt-4 p-3 bg-slate-800 rounded text-xs">{analysis}</div>}
+      </div>
+    </div>
+  );
+};
