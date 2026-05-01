@@ -1,0 +1,23 @@
+export type ModuleStatus = 'operational' | 'degraded' | 'failure';
+
+export interface KPI {
+  id: string;
+  label: string;
+  value: string | number;
+  trend: number;
+}
+
+export interface SuiteScript {
+  id: string;
+  name: string;
+  type: 'UserEvent' | 'Client' | 'Scheduled' | 'Suitelet' | 'MapReduce';
+  status: 'Deployed' | 'Testing' | 'Error' | 'Paused';
+}
+
+export interface Order {
+  id: string;
+  customer: string;
+  amount: number;
+  status: 'Pending' | 'Approved' | 'Billed' | 'Cancelled';
+  date: string;
+}
